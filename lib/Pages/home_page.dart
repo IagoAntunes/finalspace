@@ -1,18 +1,13 @@
-import 'dart:collection';
-
 import 'package:finalspace/Models/quotes.dart';
-import 'package:finalspace/Pages/characterPage.dart';
-import 'package:finalspace/Pages/episodes_page.dart';
-import 'package:finalspace/Pages/listEpisodes_page.dart';
+import 'package:finalspace/Pages/character_page.dart';
+import 'package:finalspace/Pages/list_episodes_page.dart';
 import 'package:finalspace/Pages/location_page.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'dart:math';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Quotes> listaQuotes = [];
 
-  var random = new Random();
+  var random = Random();
 
   int? numberRandom;
 
@@ -85,123 +80,158 @@ class _HomePageState extends State<HomePage> {
                       )),
                     ),
                   ),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => CharactersPage(),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: SizedBox(
-                                height: 65,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.purple),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text(
-                                          'CHARACTERS',
-                                          style: TextStyle(
-                                              color: Colors.purple,
-                                              fontSize: 16),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const CharactersPage(),
                             ),
                           ),
-                          Padding(
+                          child: Padding(
                             padding: const EdgeInsets.only(bottom: 5),
-                            child: GestureDetector(
-                              onTap: (() => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => LocationPage(),
-                                    ),
-                                  )),
-                              child: SizedBox(
-                                height: 65,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.purple),
+                            child: SizedBox(
+                              height: 65,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.purple, width: 2),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(5),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text(
-                                          'LOCATIONS',
-                                          style: TextStyle(
-                                              color: Colors.purple,
-                                              fontSize: 16),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'CHARACTERS',
+                                        style: TextStyle(
+                                          color: Colors.purple,
+                                          fontSize: 16,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ListEpisodes(),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: SizedBox(
-                                height: 65,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.purple),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5),
+                          child: GestureDetector(
+                            onTap: (() => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const LocationPage(),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text(
-                                          'EPISODES',
-                                          style: TextStyle(
-                                              color: Colors.purple,
-                                              fontSize: 16),
+                                )),
+                            child: SizedBox(
+                              height: 65,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.purple,
+                                    width: 2,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'LOCATIONS',
+                                        style: TextStyle(
+                                          color: Colors.purple,
+                                          fontSize: 16,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ListEpisodes(),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 5,
+                            ),
+                            child: SizedBox(
+                              height: 65,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.purple,
+                                    width: 2,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'EPISODES',
+                                        style: TextStyle(
+                                          color: Colors.purple,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          'Developed by IagoAntunes',
+                          style: TextStyle(fontSize: 10),
+                        )
+                      ],
                     ),
                   )
                 ],
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Final Space',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  CircularProgressIndicator(),
+                ],
+              ),
+            );
           }
         }),
       ),

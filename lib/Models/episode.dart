@@ -1,3 +1,5 @@
+import 'package:finalspace/Models/character.dart';
+
 class Episode {
   int id;
   String name;
@@ -5,14 +7,18 @@ class Episode {
   String director;
   String writer;
   String img;
+  List<dynamic> characters;
+  List<Character> listaCharacters = [];
 
-  Episode(
-      {required this.id,
-      required this.name,
-      required this.date,
-      required this.director,
-      required this.writer,
-      required this.img});
+  Episode({
+    required this.id,
+    required this.name,
+    required this.date,
+    required this.director,
+    required this.writer,
+    required this.img,
+    required this.characters,
+  });
 
   factory Episode.fromMap(Map<String, dynamic> map) {
     Episode episode;
@@ -22,7 +28,8 @@ class Episode {
       date: map['date'],
       director: map['director'] ?? '',
       writer: map['writer'],
-      img: map['img'] ?? ' ',
+      characters: map['characters'],
+      img: map['img'] ?? '',
     );
 
     return episode;

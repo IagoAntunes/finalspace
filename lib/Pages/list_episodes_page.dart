@@ -1,8 +1,6 @@
 import 'package:finalspace/Pages/episodes_page.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../Models/episode.dart';
 
@@ -83,8 +81,10 @@ class _ListEpisodesState extends State<ListEpisodes> {
                             ),
                           ),
                           shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
                           leading: Image.network(listEpisodes[index].img),
                           title: Text(listEpisodes[index].name),
                           subtitle: Text(listEpisodes[index].date),

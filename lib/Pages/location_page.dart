@@ -1,4 +1,3 @@
-import 'package:finalspace/Models/character.dart';
 import 'package:finalspace/Models/location.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +105,7 @@ class Imagem extends StatelessWidget {
       children: [
         //Imagem
         Image.network(
-          listaLocations[index].img!,
+          listaLocations[index].img,
           loadingBuilder: ((context, child, loadingProgress) {
             if (loadingProgress == null) {
               return child;
@@ -123,7 +122,7 @@ class Imagem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              listaLocations[index].name!,
+              listaLocations[index].name,
               style: const TextStyle(fontSize: 28, color: Colors.white),
             ),
           ),
@@ -163,7 +162,7 @@ class Details extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Text(listaLocations[index].name!),
+              child: Text(listaLocations[index].name),
             ),
           ),
           Container(
@@ -178,7 +177,7 @@ class Details extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Text(listaLocations[index].type!),
+              child: Text(listaLocations[index].type),
             ),
           ),
         ],
