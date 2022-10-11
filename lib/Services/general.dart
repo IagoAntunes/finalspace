@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:finalspace/Models/character.dart';
+import 'package:finalspace/Models/episode.dart';
 import 'package:finalspace/Models/location.dart';
 import 'package:finalspace/Models/quotes.dart';
 import 'package:http/http.dart' as http;
@@ -52,6 +53,29 @@ class General {
       }
     }
     return listaLocations;
+  }
+
+  static getEpisodes() async {
+    final response = await http.get(
+      Uri.parse('https://finalspaceapi.com/api/v0/episode/'),
+    );
+    List<dynamic> dataList = [];
+    List<Episode> listEpisodes = [];
+    if (response.statusCode == 200) {
+      dataList = jsonDecode(response.body);
+      for (var data in dataList) {
+        final map = {
+          'id': data['id'],
+          'name': data['name'],
+          'date': data['air_date'],
+          'director': data['director'],
+          'writer': data['writer'],
+          'img': data['img_url'],
+        };
+        listEpisodes.add(Episode.fromMap(map));
+      }
+    }
+    return listEpisodes;
   }
 
   static getQuotes() async {

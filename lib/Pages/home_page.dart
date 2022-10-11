@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:finalspace/Models/quotes.dart';
 import 'package:finalspace/Pages/characterPage.dart';
+import 'package:finalspace/Pages/episodes_page.dart';
+import 'package:finalspace/Pages/listEpisodes_page.dart';
 import 'package:finalspace/Pages/location_page.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
@@ -146,6 +148,40 @@ class _HomePageState extends State<HomePage> {
                                       children: const [
                                         Text(
                                           'LOCATIONS',
+                                          style: TextStyle(
+                                              color: Colors.purple,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ListEpisodes(),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 5),
+                              child: SizedBox(
+                                height: 65,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.purple),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text(
+                                          'EPISODES',
                                           style: TextStyle(
                                               color: Colors.purple,
                                               fontSize: 16),
