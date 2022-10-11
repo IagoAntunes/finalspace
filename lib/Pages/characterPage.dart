@@ -1,18 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finalspace/Models/character.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class CharactersPage extends StatefulWidget {
+  const CharactersPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CharactersPage> createState() => _CharactersPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CharactersPageState extends State<CharactersPage> {
   List<Character> listaCharacters = [];
 
   Future<bool> getApi() async {
@@ -61,11 +58,14 @@ class _HomePageState extends State<HomePage> {
                                     listaCharacters: listaCharacters,
                                     index: index,
                                   ),
-                                  const Text(
-                                    'Abilities',
-                                    style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold),
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      'Abilities',
+                                      style: TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   Abilities(
                                     listaCharacters: listaCharacters,
