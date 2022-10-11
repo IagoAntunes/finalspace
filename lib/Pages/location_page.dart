@@ -1,20 +1,21 @@
 import 'package:finalspace/Models/character.dart';
+import 'package:finalspace/Models/location.dart';
 import 'package:finalspace/Services/general.dart';
 import 'package:flutter/material.dart';
 
-class CharactersPage extends StatefulWidget {
-  const CharactersPage({super.key});
+class LocationPage extends StatefulWidget {
+  const LocationPage({super.key});
 
   @override
-  State<CharactersPage> createState() => _CharactersPageState();
+  State<LocationPage> createState() => _LocationPageState();
 }
 
-class _CharactersPageState extends State<CharactersPage> {
-  List<Character> listaCharacters = [];
+class _LocationPageState extends State<LocationPage> {
+  List<Location> listaLocations = [];
 
   Future<bool> getApi() async {
-    if (listaCharacters.isEmpty) {
-      listaCharacters = await General.getCharacters();
+    if (listaLocations.isEmpty) {
+      listaLocations = await General.getLocations();
       return false;
     }
     return true;
@@ -24,7 +25,7 @@ class _CharactersPageState extends State<CharactersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Characters'),
+        title: const Text('Locations'),
         backgroundColor: Colors.blueGrey.shade700,
       ),
       body: FutureBuilder(
@@ -51,24 +52,24 @@ class _CharactersPageState extends State<CharactersPage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Imagem(
-                                    listaCharacters: listaCharacters,
+                                    listaLocations: listaLocations,
                                     index: index,
                                   ),
                                   Details(
-                                    listaCharacters: listaCharacters,
+                                    listaLocations: listaLocations,
                                     index: index,
                                   ),
                                   const Padding(
                                     padding: EdgeInsets.only(top: 10),
                                     child: Text(
-                                      'Abilities',
+                                      'Inhabitants',
                                       style: TextStyle(
                                           fontSize: 28,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Abilities(
-                                    listaCharacters: listaCharacters,
+                                    listaLocations: listaLocations,
                                     index: index,
                                   ),
                                 ],
@@ -76,7 +77,7 @@ class _CharactersPageState extends State<CharactersPage> {
                             ),
                           ),
                         )),
-                    itemCount: listaCharacters.length),
+                    itemCount: listaLocations.length),
               ),
             );
           } else {
@@ -91,11 +92,11 @@ class _CharactersPageState extends State<CharactersPage> {
 class Imagem extends StatelessWidget {
   const Imagem({
     Key? key,
-    required this.listaCharacters,
+    required this.listaLocations,
     required this.index,
   }) : super(key: key);
 
-  final List<Character> listaCharacters;
+  final List<Location> listaLocations;
   final int index;
 
   @override
@@ -105,7 +106,7 @@ class Imagem extends StatelessWidget {
       children: [
         //Imagem
         Image.network(
-          listaCharacters[index].img!,
+          listaLocations[index].img!,
           loadingBuilder: ((context, child, loadingProgress) {
             if (loadingProgress == null) {
               return child;
@@ -122,7 +123,7 @@ class Imagem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              listaCharacters[index].name!,
+              listaLocations[index].name!,
               style: const TextStyle(fontSize: 28, color: Colors.white),
             ),
           ),
@@ -135,11 +136,11 @@ class Imagem extends StatelessWidget {
 class Details extends StatelessWidget {
   const Details({
     Key? key,
-    required this.listaCharacters,
+    required this.listaLocations,
     required this.index,
   }) : super(key: key);
 
-  final List<Character> listaCharacters;
+  final List<Location> listaLocations;
   final int index;
 
   @override
@@ -162,7 +163,7 @@ class Details extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].gender!),
+              child: Text(listaLocations[index].name!),
             ),
           ),
           Container(
@@ -177,69 +178,9 @@ class Details extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].hair!),
+              child: Text(listaLocations[index].type!),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].hair!),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].origin!),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].status!),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(listaCharacters[index].species!),
-            ),
-          )
         ],
       ),
     );
@@ -249,11 +190,11 @@ class Details extends StatelessWidget {
 class Abilities extends StatelessWidget {
   const Abilities({
     Key? key,
-    required this.listaCharacters,
+    required this.listaLocations,
     required this.index,
   }) : super(key: key);
 
-  final List<Character> listaCharacters;
+  final List<Location> listaLocations;
   final int index;
 
   @override
@@ -262,12 +203,7 @@ class Abilities extends StatelessWidget {
       spacing: 10,
       runSpacing: 5,
       children: [
-        for (int i = 0;
-            i <
-                (listaCharacters[index].abilities.length > 5
-                    ? 5
-                    : listaCharacters[index].abilities.length);
-            i++)
+        for (var inhabitant in listaLocations[index].inhabitants)
           Container(
             decoration: BoxDecoration(
               border: Border.all(
@@ -280,7 +216,7 @@ class Abilities extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(listaCharacters[index].abilities[i]),
+              child: Text(inhabitant),
             ),
           )
       ],

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:finalspace/Models/character.dart';
+import 'package:finalspace/Models/location.dart';
 import 'package:finalspace/Models/quotes.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,6 +30,28 @@ class General {
       }
     }
     return listaCharacters;
+  }
+
+  static getLocations() async {
+    final response = await http.get(
+      Uri.parse('https://finalspaceapi.com/api/v0/location/'),
+    );
+    List<dynamic> dataList = [];
+    List<Location> listaLocations = [];
+    if (response.statusCode == 200) {
+      dataList = jsonDecode(response.body);
+      for (var data in dataList) {
+        final map = {
+          'id': data['id'],
+          'name': data['name'],
+          'type': data['type'],
+          'inhabitants': data['inhabitants'],
+          'img': data['img_url'],
+        };
+        listaLocations.add(Location.fromMap(map));
+      }
+    }
+    return listaLocations;
   }
 
   static getQuotes() async {
